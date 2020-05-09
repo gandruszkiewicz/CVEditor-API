@@ -34,10 +34,11 @@ namespace CVEditorAPI.Services
             return this._dataContext.Find<TEntity>(keyValues);
         }
 
-        public void Create(TEntity entity)
+        public async Task<int> CreateAsync(TEntity entity)
         {
             _dataContext.Add<TEntity>(entity);
-            _dataContext.SaveChangesAsync();
+
+            return await _dataContext.SaveChangesAsync();
         }
 
         public void Update(TEntity entity)

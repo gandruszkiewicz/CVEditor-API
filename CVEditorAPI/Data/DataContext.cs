@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CVEditorAPI.Data
 {
-    public class DataContext : IdentityDbContext, IDataContext
+    public class DataContext : IdentityDbContext
     {
         public DbSet<PersonalData> PersonalDatas { get; set; }
 

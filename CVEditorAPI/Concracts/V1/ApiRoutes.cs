@@ -17,6 +17,8 @@ namespace CVEditorAPI.Concracts.V1
         public static class PersonalData
         {
             public const string GetAll = Base + "/personalDatas";
+
+            public const string Post = Base + "personalDatas";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CVEditorAPI.Data;
+using CVEditorAPI.Data.Dtos;
 using CVEditorAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ namespace CVEditorAPI.Controllers.V1
 {
     public class PersonalDataController: Controller
     {
-        private List<PersonalData> _personalDatas;
+        private List<Data.PersonalData> _personalDatas;
 
         private readonly IPersonalDataService _personalDataService;
 
@@ -35,8 +36,26 @@ namespace CVEditorAPI.Controllers.V1
         [HttpGet(Concracts.V1.ApiRoutes.PersonalData.GetAll)]
         public IActionResult GetAll()
         {
-            var personalDatas = this._personalDataService.GetAll().Concat(_personalDatas);
+            var personalDatas = 
+                this._personalDataService.GetAll().Concat(_personalDatas);
+
             return Ok(personalDatas);
+        }
+
+        [HttpPost(Concracts.V1.ApiRoutes.PersonalData.Post)]
+        public async Task<IActionResult> Post([FromBody] PersonalDataPostRequest request)
+        {
+            var entity = new PersonalData()
+            {
+                Address = request.Address,
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName
+            };
+
+            var result = _personalDataService.CreateAsync(entity);
+
+            return this.Ok(result);
         }
     }
 }

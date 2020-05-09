@@ -14,7 +14,7 @@ namespace CVEditorAPI.Services
 
         TEntity Get(params object[] keyValues);
 
-        void Create(TEntity entity);
+        Task<int> CreateAsync(TEntity entity);
 
         void Update(TEntity entity);
 
