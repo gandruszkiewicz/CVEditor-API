@@ -1,4 +1,5 @@
-﻿using CVEditorAPI.Domains;
+﻿using CVEditorAPI.Data;
+using CVEditorAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,12 @@ namespace CVEditorAPI.Controllers.V1
     {
         private List<PersonalData> _personalDatas;
 
-        public PersonalDataController()
+        private readonly IPersonalDataService _personalDataService;
+
+        public PersonalDataController(IPersonalDataService personalDataService)
         {
+            _personalDataService = personalDataService;
+
             _personalDatas = new List<PersonalData>();
             for(var index = 0; index < 5; index++)
             {
@@ -30,7 +35,8 @@ namespace CVEditorAPI.Controllers.V1
         [HttpGet(Concracts.V1.ApiRoutes.PersonalData.GetAll)]
         public IActionResult GetAll()
         {
-            return Ok(_personalDatas);
+            var personalDatas = this._personalDataService.GetAll().Concat(_personalDatas);
+            return Ok(personalDatas);
         }
     }
 }
