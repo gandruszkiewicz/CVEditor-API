@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Data.Dtos
+namespace CVEditorAPI.Data.Dtos.Requests
 {
     public class PersonalDataPostRequest
     {

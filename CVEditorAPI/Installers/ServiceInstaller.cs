@@ -13,6 +13,7 @@ namespace CVEditorAPI.Installers
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IPersonalDataService, PersonalDataService>();
+            services.AddScoped<IIdentityService, IdentityService>();
         }
     }
 }

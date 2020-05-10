@@ -1,6 +1,9 @@
 ﻿using CVEditorAPI.Data;
 using CVEditorAPI.Data.Dtos;
+using CVEditorAPI.Data.Dtos.Requests;
 using CVEditorAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Controllers.V1
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PersonalDataController: Controller
     {
         private List<Data.PersonalData> _personalDatas;

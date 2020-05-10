@@ -20,5 +20,12 @@ namespace CVEditorAPI.Concracts.V1
 
             public const string Post = Base + "personalDatas";
         }
+
+        public static class Identity
+        {
+            public const string Login = Base + "identity/login";
+
+            public const string Register = Base + "identity/register";
+        }
     }
 }
