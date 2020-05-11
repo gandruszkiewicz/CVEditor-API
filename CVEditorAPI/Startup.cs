@@ -46,6 +46,11 @@ namespace CVEditorAPI
                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            
+            app.UseAuthentication();
+
             var swaggerOptions = new Configurations.SwaggerOptions();
             Configuration.GetSection(nameof(Configurations.SwaggerOptions)).Bind(swaggerOptions);
 
@@ -53,18 +58,7 @@ namespace CVEditorAPI
             app.UseSwaggerUI(options => 
                 options.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description));
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseAuthentication();
-
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
         }
     }
 }

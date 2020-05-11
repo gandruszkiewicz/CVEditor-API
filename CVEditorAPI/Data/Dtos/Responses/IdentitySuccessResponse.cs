@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Data.Dtos.Responses
 {
-    public class RegistrationFailedResponse
+    public class IdentitySuccessResponse
     {
-        public IEnumerable<string> Errors { get; set; }
+        public string Token { get; set; }
     }
 }

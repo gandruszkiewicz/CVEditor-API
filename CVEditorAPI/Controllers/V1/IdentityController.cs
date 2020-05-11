@@ -22,20 +22,41 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpPost(template: ApiRoutes.Identity.Register)]
-        public async Task<IActionResult> Register([FromBody] UserRegistrationRequest request)
+        public async Task<IActionResult> Register([FromBody] UserIdentityRequest request)
         {
 
             var authResponse = await _identityService.RegisterAsync(request.Email, request.Password);
 
             if (!authResponse.IsSuccess)
             {
-                return this.BadRequest(new RegistrationFailedResponse
+                return this.BadRequest(new IdentityFailedResponse
                 {
                     Errors = authResponse.Errors
                 });
             }
 
-            return this.Ok(new RegistrationSuccessResponse 
+            return this.Ok(new IdentitySuccessResponse 
+            {
+                Token = authResponse.Token
+            });
+
+        }
+
+        [HttpPost(template: ApiRoutes.Identity.Login)]
+        public async Task<IActionResult> Login([FromBody] UserIdentityRequest request)
+        {
+
+            var authResponse = await _identityService.LoginAsync(request.Email, request.Password);
+
+            if (!authResponse.IsSuccess)
+            {
+                return this.BadRequest(new IdentityFailedResponse
+                {
+                    Errors = authResponse.Errors
+                });
+            }
+
+            return this.Ok(new IdentitySuccessResponse
             {
                 Token = authResponse.Token
             });

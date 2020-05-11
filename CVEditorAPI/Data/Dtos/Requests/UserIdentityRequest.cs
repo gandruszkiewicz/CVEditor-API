@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Data.Dtos.Requests
 {
-    public class UserRegistrationRequest
+    public class UserIdentityRequest
     {
         public string Email { get; set; }
 

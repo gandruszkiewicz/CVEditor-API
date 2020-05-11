@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace CVEditorAPI.Installers
 {
@@ -44,24 +47,39 @@ namespace CVEditorAPI.Installers
                 };
             });
 
-
+            
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new Info { Title = "CVEditor API", Version = "v1" });
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "CVEditor API", Version = "v1" });
 
-                var security = new Dictionary<string, IEnumerable<string>>
+                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    {"Bearer", new string[0]}
-                };
-
-                x.AddSecurityDefinition(name: "Bearer", new ApiKeyScheme
-                {
-                    Description = "JWT Auth header using bearer scheme",
+                    Description = "JWT Authorization header using the Bearer scheme.",
                     Name = "Authorization",
-                    In = "Header",
-                    Type = "apikey"
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
                 });
-                x.AddSecurityRequirement(security);
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                  {
+                    {
+                      new OpenApiSecurityScheme
+                      {
+                          Reference = new OpenApiReference
+                          {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                          },
+                          Scheme = "Bearer",
+                          Name = "Bearer",
+                          In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                      }
+                    });
+
             });
         }
     }
