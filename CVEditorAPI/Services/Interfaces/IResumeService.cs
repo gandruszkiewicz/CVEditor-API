@@ -1,12 +1,13 @@
 ﻿using CVEditorAPI.Data;
+using CVEditorAPI.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Services
+namespace CVEditorAPI.Services.Interfaces
 {
-    public interface IPersonalDataService: IService<PersonalData>
+    public interface IResumeService: IService<Resume>
     {
     }
 }

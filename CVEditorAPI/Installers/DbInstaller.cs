@@ -1,4 +1,5 @@
 ﻿using CVEditorAPI.Data;
+using CVEditorAPI.Data.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,7 @@ namespace CVEditorAPI.Installers
                     configuration.GetConnectionString("DefaultConnection"));
                
             },ServiceLifetime.Singleton);
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<DataContext>();
 
 

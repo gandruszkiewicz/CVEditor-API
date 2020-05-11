@@ -1,4 +1,5 @@
-﻿using CVEditorAPI.Data;
+﻿using CVEditorAPI.Data.Model;
+using CVEditorAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;

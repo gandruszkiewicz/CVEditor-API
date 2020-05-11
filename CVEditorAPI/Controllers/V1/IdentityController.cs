@@ -3,6 +3,7 @@ using CVEditorAPI.Data.Dtos;
 using CVEditorAPI.Data.Dtos.Requests;
 using CVEditorAPI.Data.Dtos.Responses;
 using CVEditorAPI.Services;
+using CVEditorAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

@@ -4,47 +4,22 @@ using CVEditorAPI.Data.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CVEditorAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200511180533_PersonalDatasRenamedToResumeIdentityOwnImplementation")]
+    partial class PersonalDatasRenamedToResumeIdentityOwnImplementation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CVEditorAPI.Data.Model.ProfessionalExperience", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("CompanyName");
-
-                    b.Property<DateTime>("DateFrom");
-
-                    b.Property<DateTime?>("DateTo");
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Position");
-
-                    b.Property<int>("ResumeId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResumeId");
-
-                    b.ToTable("ProfessionalExperience");
-                });
 
             modelBuilder.Entity("CVEditorAPI.Data.Model.Resume", b =>
                 {
@@ -60,11 +35,7 @@ namespace CVEditorAPI.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Resumes");
                 });
@@ -232,21 +203,6 @@ namespace CVEditorAPI.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CVEditorAPI.Data.Model.ProfessionalExperience", b =>
-                {
-                    b.HasOne("CVEditorAPI.Data.Model.Resume", "Resume")
-                        .WithMany("ProfessionalExperiences")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CVEditorAPI.Data.Model.Resume", b =>
-                {
-                    b.HasOne("CVEditorAPI.Data.Model.User", "User")
-                        .WithMany("Resumes")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Data.Dtos.Requests
 {
-    public class PersonalDataPostRequest
+    public class ResumePostRequest
     {
         public string FirstName { get; set; }
 

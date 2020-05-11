@@ -1,29 +1,36 @@
 ﻿using CVEditorAPI.Data;
 using CVEditorAPI.Data.Dtos;
 using CVEditorAPI.Data.Dtos.Requests;
+using CVEditorAPI.Data.Model;
+using CVEditorAPI.Extensions;
 using CVEditorAPI.Services;
+using CVEditorAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CVEditorAPI.Controllers.V1
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class PersonalDataController: Controller
+    public class ResumeController: Controller
     {
 
-        private readonly IPersonalDataService _personalDataService;
+        private readonly IResumeService _personalDataService;
+        private readonly string _userId;
 
-        public PersonalDataController(IPersonalDataService personalDataService)
+        public ResumeController(IResumeService personalDataService)
         {
             _personalDataService = personalDataService;
+            this._userId = HttpContext.User.GetUserId();
         }
 
-        [HttpGet(Concracts.V1.ApiRoutes.PersonalData.GetAll)]
+        [HttpGet(Concracts.V1.ApiRoutes.Resumes.GetAll)]
         public IActionResult GetAll()
         {
             var personalDatas = 
@@ -32,18 +39,19 @@ namespace CVEditorAPI.Controllers.V1
             return Ok(personalDatas);
         }
 
-        [HttpPost(Concracts.V1.ApiRoutes.PersonalData.Post)]
-        public async Task<IActionResult> Post([FromBody] PersonalDataPostRequest request)
+        [HttpPost(Concracts.V1.ApiRoutes.Resumes.Post)]
+        public async Task<IActionResult> Post([FromBody] ResumePostRequest request)
         {
-            var entity = new PersonalData()
+            var entity = new Resume()
             {
                 Address = request.Address,
                 Email = request.Email,
                 FirstName = request.FirstName,
-                LastName = request.LastName
+                LastName = request.LastName,
+                UserId = _userId
             };
 
-            var result = _personalDataService.CreateAsync(entity);
+            var result = await _personalDataService.CreateAsync(entity);
 
             return this.Ok(result);
         }

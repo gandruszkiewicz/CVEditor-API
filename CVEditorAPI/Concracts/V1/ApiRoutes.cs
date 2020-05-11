@@ -14,11 +14,18 @@ namespace CVEditorAPI.Concracts.V1
 
         public const string Base = Root + "/" + Version;
 
-        public static class PersonalData
+        public static class Resumes
         {
-            public const string GetAll = Base + "/personalDatas";
+            public const string GetAll = Base + "/resumes";
 
-            public const string Post = Base + "personalDatas";
+            public const string Post = Base + "/resumes";
+        }
+
+        public static class ProfessionalExperience
+        {
+            public const string GetAll = Base + "/professonalExperience";
+
+            public const string Post = Base + "/professonalExperience";
         }
 
         public static class Identity
