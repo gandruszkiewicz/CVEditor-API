@@ -1,5 +1,8 @@
-﻿using CVEditorAPI.Data.Dtos.Requests;
+﻿using AutoMapper;
+using CVEditorAPI.Data.Dtos.Requests;
+using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model;
+using CVEditorAPI.Data.Model.ResumeComponents;
 using CVEditorAPI.Extensions;
 using CVEditorAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,13 +20,14 @@ namespace CVEditorAPI.Controllers.V1
     public class ProfessionalExperienceController: Controller
     {
         private readonly IProfessionalExperienceService _professionalExperienceService;
-        private readonly string userId;
+        private readonly IMapper _mapper;
 
         public ProfessionalExperienceController(
-            IProfessionalExperienceService professionalExperienceService)
+            IProfessionalExperienceService professionalExperienceService,
+            IMapper mapper)
         {
             _professionalExperienceService = professionalExperienceService;
-            this.userId = HttpContext.User.GetUserId();
+            this._mapper = mapper;
         }
 
         [HttpGet(Concracts.V1.ApiRoutes.ProfessionalExperience.GetAll)]
@@ -38,16 +42,8 @@ namespace CVEditorAPI.Controllers.V1
         [HttpPost(Concracts.V1.ApiRoutes.ProfessionalExperience.Post)]
         public async Task<IActionResult> Post([FromBody] ProfessionalExperiencePostRequest request)
         {
-            var entity = new ProfessionalExperience()
-            {
-                CompanyName = request.CompanyName,
-                City = request.City,
-                Position = request.Position,
-                Description = request.Description,
-                DateFrom = request.DateFrom,
-                DateTo = request.DateTo,
-                ResumeId = request.ResumeId
-            };
+            var userId = HttpContext.User.GetUserId();
+            var entity = _mapper.Map<ProfessionalExperience>(request);
 
             var result = await _professionalExperienceService.CreateAsync(entity);
 

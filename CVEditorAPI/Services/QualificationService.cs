@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Services
 {
-    public class ProfessionalExperienceService: 
-        Service<ProfessionalExperience>, IProfessionalExperienceService
+    public class QualificationService: Service<Qualification>, IQualificationService
     {
-        public ProfessionalExperienceService(DataContext context)
-            :base(context)
+        public QualificationService(DataContext context)
+            : base(context)
         {
 
         }

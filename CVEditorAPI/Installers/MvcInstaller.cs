@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
+using AutoMapper;
 
 namespace CVEditorAPI.Installers
 {
@@ -25,6 +26,16 @@ namespace CVEditorAPI.Installers
             configuration.Bind(key: nameof(JwtSettings), jwtSettings);
 
             services.AddSingleton(jwtSettings);
+
+            var mapperConfig = new MapperConfiguration(conf =>
+            {
+                conf.AddProfile(new AutoMapperProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+
+            services.AddSingleton(mapper);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAuthentication(configureOptions: conf =>

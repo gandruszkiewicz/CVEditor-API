@@ -9,11 +9,6 @@ namespace CVEditorAPI.Data.Model
 {
     public class User: IdentityUser
     {
-        public User()
-        {
-            this.Resumes = new Collection<Resume>();
-        }
-
-        public ICollection<Resume> Resumes { get; set; }
+        public virtual ICollection<Resume> Resumes { get; set; }
     }
 }

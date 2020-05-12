@@ -18,6 +18,7 @@ namespace CVEditorAPI.Services
         public Service(DataContext dataContext)
         {
             this._dataContext = dataContext;
+            _set = dataContext.Set<TEntity>();
         }
 
         public IQueryable<TEntity> Queryable()

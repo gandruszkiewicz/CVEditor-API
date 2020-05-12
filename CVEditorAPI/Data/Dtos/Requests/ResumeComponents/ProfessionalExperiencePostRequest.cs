@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Data.Dtos.Requests
+namespace CVEditorAPI.Data.Dtos.Requests.ResumeComponents
 {
-    public class ProfessionalExperiencePostRequest
+    public class ProfessionalExperiencePostRequest: BaseResumeComponentsReq
     {
         public string CompanyName { get; set; }
 
@@ -18,7 +18,5 @@ namespace CVEditorAPI.Data.Dtos.Requests
         public DateTime? DateTo { get; set; }
 
         public string Description { get; set; }
-
-        public int ResumeId { get; set; }
     }
 }

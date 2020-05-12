@@ -1,4 +1,5 @@
 ﻿using CVEditorAPI.Data;
+using CVEditorAPI.Data.Model.ResumeComponents;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,6 @@ namespace CVEditorAPI.Data.Model
 {
     public class Resume
     {
-        public Resume()
-        {
-            this.ProfessionalExperiences = new List<ProfessionalExperience>();
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -31,6 +27,8 @@ namespace CVEditorAPI.Data.Model
 
         public User User { get; set; }
 
-        public ICollection<ProfessionalExperience> ProfessionalExperiences { get; set; }
+        public virtual ICollection<ProfessionalExperience> ProfessionalExperiences { get; set; }
+
+        public virtual ICollection<Qualification> Qualifications { get; set; }
     }
 }

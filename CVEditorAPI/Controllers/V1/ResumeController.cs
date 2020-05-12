@@ -1,6 +1,8 @@
-﻿using CVEditorAPI.Data;
+﻿using AutoMapper;
+using CVEditorAPI.Data;
 using CVEditorAPI.Data.Dtos;
 using CVEditorAPI.Data.Dtos.Requests;
+using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model;
 using CVEditorAPI.Extensions;
 using CVEditorAPI.Services;
@@ -21,37 +23,38 @@ namespace CVEditorAPI.Controllers.V1
     public class ResumeController: Controller
     {
 
-        private readonly IResumeService _personalDataService;
-        private readonly string _userId;
+        private readonly IResumeService _resume;
+        private readonly IMapper _mapper;
 
-        public ResumeController(IResumeService personalDataService)
+        public ResumeController(IResumeService resume, IMapper mapper)
         {
-            _personalDataService = personalDataService;
-            this._userId = HttpContext.User.GetUserId();
+            this._resume = resume;
+            this._mapper = mapper;
         }
 
         [HttpGet(Concracts.V1.ApiRoutes.Resumes.GetAll)]
         public IActionResult GetAll()
         {
-            var personalDatas = 
-                this._personalDataService.GetAll();
+            try
+            {
+                var resumes =
+                    this._resume.GetAll().ToList();
 
-            return Ok(personalDatas);
+                return Ok(resumes);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Resumes.Post)]
         public async Task<IActionResult> Post([FromBody] ResumePostRequest request)
         {
-            var entity = new Resume()
-            {
-                Address = request.Address,
-                Email = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserId = _userId
-            };
+            var entity = _mapper.Map<Resume>(request);
 
-            var result = await _personalDataService.CreateAsync(entity);
+            var result = await _resume.CreateAsync(entity);
 
             return this.Ok(result);
         }

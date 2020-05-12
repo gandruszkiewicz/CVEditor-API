@@ -1,13 +1,14 @@
-﻿using System;
+﻿using CVEditorAPI.Data.Model.ResumeComponents;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Data.Model
+namespace CVEditorAPI.Data.Model.ResumeComponents
 {
-    public class ProfessionalExperience
+    public class ProfessionalExperience: BaseResumeComponent
     {
         [Key]
         public int Id { get; set; }
@@ -23,10 +24,5 @@ namespace CVEditorAPI.Data.Model
         public DateTime? DateTo { get; set; }
 
         public string Description { get; set; }
-
-        [ForeignKey("Resume")]
-        public int ResumeId { get; set; }
-
-        public Resume Resume { get; set; }
     }
 }

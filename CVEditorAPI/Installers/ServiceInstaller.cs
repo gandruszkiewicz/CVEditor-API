@@ -18,6 +18,9 @@ namespace CVEditorAPI.Installers
             services.AddSingleton<IProfessionalExperienceService, 
                 ProfessionalExperienceService>();
 
+            services.AddSingleton<IQualificationService,
+                    QualificationService>();
+
             services.AddScoped<IIdentityService, IdentityService>();
         }
     }
