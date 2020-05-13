@@ -15,8 +15,8 @@ namespace CVEditorAPI.Installers
         {
             services.AddSingleton<IResumeService, ResumeService>();
 
-            services.AddSingleton<IProfessionalExperienceService, 
-                ProfessionalExperienceService>();
+            services.AddSingleton<IExperience, 
+                ExperienceService>();
 
             services.AddSingleton<IQualificationService,
                     QualificationService>();

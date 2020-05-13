@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Data.Dtos.Requests.ResumeComponents
+namespace CVEditorAPI.Data.Dtos
 {
-    public class ResumePostRequest
+    public class ResumeDto
     {
         public string FirstName { get; set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Services.Interfaces
 {
-    public interface IProfessionalExperienceService: IService<ProfessionalExperience>
+    public interface IExperience: IService<Experience>
     {
     }
 }

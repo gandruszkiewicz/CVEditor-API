@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Data.Dtos.Requests.ResumeComponents
 {
-    public class QualificationPostRequest: BaseResumeComponentsReq
+    public class PostQualificationDto: BaseRequestResumeComponentDto
     {
         public string SchoolName { get; set; }
 

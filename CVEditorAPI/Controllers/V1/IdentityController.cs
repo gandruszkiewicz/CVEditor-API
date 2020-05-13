@@ -1,6 +1,5 @@
 ﻿using CVEditorAPI.Concracts.V1;
 using CVEditorAPI.Data.Dtos;
-using CVEditorAPI.Data.Dtos.Requests;
 using CVEditorAPI.Data.Dtos.Responses;
 using CVEditorAPI.Services;
 using CVEditorAPI.Services.Interfaces;
@@ -23,9 +22,8 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpPost(template: ApiRoutes.Identity.Register)]
-        public async Task<IActionResult> Register([FromBody] UserIdentityRequest request)
+        public async Task<IActionResult> Register([FromBody] UserIdentityDto request)
         {
-
             var authResponse = await _identityService.RegisterAsync(request.Email, request.Password);
 
             if (!authResponse.IsSuccess)
@@ -44,7 +42,7 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpPost(template: ApiRoutes.Identity.Login)]
-        public async Task<IActionResult> Login([FromBody] UserIdentityRequest request)
+        public async Task<IActionResult> Login([FromBody] UserIdentityDto request)
         {
 
             var authResponse = await _identityService.LoginAsync(request.Email, request.Password);

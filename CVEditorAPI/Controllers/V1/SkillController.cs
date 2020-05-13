@@ -35,9 +35,9 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Skill.Post)]
-        public async Task<IActionResult> Post([FromBody] SkillPostRequest request)
+        public async Task<IActionResult> Post([FromBody] PostSkillDto skillDto)
         {
-            var entity = _mapper.Map<Skill>(request);
+            var entity = _mapper.Map<Skill>(skillDto);
 
             var result = await _skillService.CreateAsync(entity);
 

@@ -43,16 +43,16 @@ namespace CVEditorAPI.Services
             return await _dataContext.SaveChangesAsync();
         }
 
-        public void Update(TEntity entity)
+        public async Task<int> Update(TEntity entity)
         {
             _dataContext.Update<TEntity>(entity);
-            _dataContext.SaveChangesAsync();
+           return await _dataContext.SaveChangesAsync();
         }
 
-        public void Delete(TEntity entity)
+        public async Task<int> Delete(TEntity entity)
         {
             _dataContext.Remove(entity);
-            _dataContext.SaveChangesAsync();
+            return await _dataContext.SaveChangesAsync();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CVEditorAPI.Data.Dtos.Requests;
+using CVEditorAPI.Data.Dtos;
 using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model;
 using CVEditorAPI.Data.Model.ResumeCompoments;
@@ -15,10 +15,11 @@ namespace CVEditorAPI.Configurations
     {
         public AutoMapperProfile()
         {
-            CreateMap<ProfessionalExperiencePostRequest, ProfessionalExperience>();
-            CreateMap<QualificationPostRequest, Qualification>();
-            CreateMap<SkillPostRequest, Skill>();
-            CreateMap<ResumePostRequest,Resume>();
+            CreateMap<PostExperienceDto, Experience>();
+            CreateMap<PutExperienceDto, Experience>();
+            CreateMap<PostQualificationDto, Qualification>();
+            CreateMap<PostSkillDto, Skill>();
+            CreateMap<ResumeDto, Resume>();
         }
     }
 }

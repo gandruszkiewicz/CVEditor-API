@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Data.Model.ResumeComponents
 {
-    public class ProfessionalExperience: BaseResumeComponent
+    public class Experience: BaseResumeComponent
     {
         [Key]
         public int Id { get; set; }

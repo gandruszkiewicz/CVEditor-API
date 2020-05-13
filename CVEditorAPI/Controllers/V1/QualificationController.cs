@@ -3,6 +3,8 @@ using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model.ResumeComponents;
 using CVEditorAPI.Services;
 using CVEditorAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Controllers.V1
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class QualificationController: Controller
     {
         private readonly IQualificationService _qualificationService;
@@ -32,9 +35,9 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Qualification.Post)]
-        public async Task<IActionResult> Post([FromBody] QualificationPostRequest request)
+        public async Task<IActionResult> Post([FromBody] PostQualificationDto qualificationDto)
         {
-            var entity = _mapper.Map<Qualification>(request);
+            var entity = _mapper.Map<Qualification>(qualificationDto);
 
             var result = await _qualificationService.CreateAsync(entity);
 

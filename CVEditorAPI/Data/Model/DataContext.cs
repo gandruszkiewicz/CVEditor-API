@@ -12,7 +12,7 @@ namespace CVEditorAPI.Data.Model
     {
         public DbSet<Resume> Resumes { get; set; }
 
-        public DbSet<ProfessionalExperience> ProfessionalExperiences { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
 
         public DbSet<Qualification> Qualifications { get; set; }
 

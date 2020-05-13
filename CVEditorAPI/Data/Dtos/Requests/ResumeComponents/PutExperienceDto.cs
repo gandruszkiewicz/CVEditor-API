@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Data.Dtos.Requests.ResumeComponents
 {
-    public class ProfessionalExperiencePostRequest: BaseResumeComponentsReq
+    public class PutExperienceDto: BaseRequestResumeComponentDto
     {
+        public int Id { get; set; }
         public string CompanyName { get; set; }
 
         public string City { get; set; }

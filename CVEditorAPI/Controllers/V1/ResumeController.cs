@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CVEditorAPI.Data;
 using CVEditorAPI.Data.Dtos;
-using CVEditorAPI.Data.Dtos.Requests;
 using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model;
 using CVEditorAPI.Extensions;
@@ -42,9 +41,9 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Resumes.Post)]
-        public async Task<IActionResult> Post([FromBody] ResumePostRequest request)
+        public async Task<IActionResult> Post([FromBody] ResumeDto resumeDto)
         {
-            var entity = _mapper.Map<Resume>(request);
+            var entity = _mapper.Map<Resume>(resumeDto);
 
             entity.UserId = this.User.GetUserId();
 

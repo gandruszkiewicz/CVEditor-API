@@ -32,7 +32,7 @@ namespace CVEditorAPI.Concracts.V1
             private const string BaseEndpoint = Base + "/resume";
         }
 
-        public static class ProfessionalExperience
+        public static class Experience
         {
             public const string GetAll = BaseEndpoint + "/{resumeId}";
 
@@ -44,7 +44,7 @@ namespace CVEditorAPI.Concracts.V1
 
             public const string Delete = BaseEndpoint;
 
-            private const string BaseEndpoint = Base + "/professionalExperience";
+            private const string BaseEndpoint = Base + "/experience";
         }
 
         public static class Qualification

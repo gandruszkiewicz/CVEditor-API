@@ -16,8 +16,8 @@ namespace CVEditorAPI.Services.Interfaces
 
         Task<int> CreateAsync(TEntity entity);
 
-        void Update(TEntity entity);
+        Task<int> Update(TEntity entity);
 
-        void Delete(TEntity entity);
+        Task<int> Delete(TEntity entity);
     }
 }

@@ -30,7 +30,7 @@ namespace CVEditorAPI.Data.Model
 
         public User User { get; set; }
 
-        public ICollection<ProfessionalExperience> ProfessionalExperiences { get; set; }
+        public ICollection<Experience> ProfessionalExperiences { get; set; }
 
         public ICollection<Qualification> Qualifications { get; set; }
 
