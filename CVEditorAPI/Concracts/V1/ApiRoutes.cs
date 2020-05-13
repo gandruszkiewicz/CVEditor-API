@@ -16,7 +16,7 @@ namespace CVEditorAPI.Concracts.V1
 
         public const string GetAll = Base;
 
-        public static class Resumes
+        public static class Resume
         {
 
             public const string GetAll = BaseEndpoint;

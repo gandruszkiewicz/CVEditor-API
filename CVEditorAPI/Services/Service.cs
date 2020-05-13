@@ -18,6 +18,9 @@ namespace CVEditorAPI.Services
         public Service(DataContext dataContext)
         {
             this._dataContext = dataContext;
+
+            _dataContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
             _set = dataContext.Set<TEntity>();
         }
 
@@ -46,7 +49,8 @@ namespace CVEditorAPI.Services
         public async Task<int> Update(TEntity entity)
         {
             _dataContext.Update<TEntity>(entity);
-           return await _dataContext.SaveChangesAsync();
+            
+            return await _dataContext.SaveChangesAsync();
         }
 
         public async Task<int> Delete(TEntity entity)

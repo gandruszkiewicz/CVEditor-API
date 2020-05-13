@@ -22,32 +22,52 @@ namespace CVEditorAPI.Controllers.V1
     public class ResumeController: Controller
     {
 
-        private readonly IResumeService _resume;
+        private readonly IResumeService _resumeService;
         private readonly IMapper _mapper;
 
         public ResumeController(IResumeService resume, IMapper mapper)
         {
-            this._resume = resume;
+            this._resumeService = resume;
             this._mapper = mapper;
         }
 
-        [HttpGet(Concracts.V1.ApiRoutes.Resumes.GetAll)]
+        [HttpGet(Concracts.V1.ApiRoutes.Resume.GetAll)]
         public IActionResult GetAll()
         {
             var resumes =
-                this._resume.GetAll(this.User.GetUserId()).ToList();
+                this._resumeService.GetAll(this.User.GetUserId()).ToList();
 
             return Ok(resumes);
         }
 
-        [HttpPost(Concracts.V1.ApiRoutes.Resumes.Post)]
+        [HttpPost(Concracts.V1.ApiRoutes.Resume.Post)]
         public async Task<IActionResult> Post([FromBody] ResumeDto resumeDto)
         {
             var entity = _mapper.Map<Resume>(resumeDto);
 
             entity.UserId = this.User.GetUserId();
 
-            var result = await _resume.CreateAsync(entity);
+            var result = await _resumeService.CreateAsync(entity);
+
+            return this.Ok(result);
+        }
+
+        [HttpPut(Concracts.V1.ApiRoutes.Resume.Put)]
+        public async Task<IActionResult> Put([FromBody] PutResumeDto resumeDto)
+        {
+            var entity = _mapper.Map<Resume>(resumeDto);
+            entity.UserId = this.User.GetUserId();
+            var result = await _resumeService.Update(entity);
+
+            return this.Ok(result);
+        }
+
+        [HttpDelete(Concracts.V1.ApiRoutes.Resume.Delete)]
+        public async Task<IActionResult> Delete(int resumeId)
+        {
+            var entity = this._resumeService.Get(resumeId);
+
+            var result = await _resumeService.Delete(entity);
 
             return this.Ok(result);
         }

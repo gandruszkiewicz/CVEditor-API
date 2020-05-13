@@ -44,5 +44,25 @@ namespace CVEditorAPI.Controllers.V1
             return this.Ok(result);
         }
 
+        [HttpPut(Concracts.V1.ApiRoutes.Qualification.Put)]
+        public async Task<IActionResult> Put([FromBody] PutQualificationDto qualificationDto)
+        {
+            var entity = _mapper.Map<Qualification>(qualificationDto);
+
+            var result = await _qualificationService.Update(entity);
+
+            return this.Ok(result);
+        }
+
+        [HttpDelete(Concracts.V1.ApiRoutes.Qualification.Delete)]
+        public async Task<IActionResult> Delete(int qualificationId)
+        {
+            var entity = this._qualificationService.Get(qualificationId);
+
+            var result = await _qualificationService.Delete(entity);
+
+            return this.Ok(result);
+        }
+
     }
 }
