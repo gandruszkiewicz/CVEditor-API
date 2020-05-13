@@ -49,5 +49,6 @@ namespace CVEditorAPI.Controllers.V1
 
             return this.Ok(result);
         }
+
     }
 }

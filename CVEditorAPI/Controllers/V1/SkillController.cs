@@ -2,6 +2,8 @@
 using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model.ResumeCompoments;
 using CVEditorAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Controllers.V1
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class SkillController: Controller
     {
         private readonly IMapper _mapper;
