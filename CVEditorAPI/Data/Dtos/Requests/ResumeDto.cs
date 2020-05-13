@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Data.Dtos.Requests
+namespace CVEditorAPI.Data.Dtos
 {
-    public class PersonalDataPostRequest
+    public class ResumeDto
     {
         public string FirstName { get; set; }
 
@@ -14,5 +14,7 @@ namespace CVEditorAPI.Data.Dtos.Requests
         public string Email { get; set; }
 
         public string Address { get; set; }
+
+        public string SumUp { get; set; }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CVEditorAPI.Data.Dtos.Requests
+namespace CVEditorAPI.Data.Dtos
 {
-    public class UserIdentityRequest
+    public class UserIdentityDto
     {
         public string Email { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using CVEditorAPI.Data;
+﻿using CVEditorAPI.Data.Model;
+using CVEditorAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
@@ -17,6 +18,10 @@ namespace CVEditorAPI.Services
         public Service(DataContext dataContext)
         {
             this._dataContext = dataContext;
+
+            _dataContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+            _set = dataContext.Set<TEntity>();
         }
 
         public IQueryable<TEntity> Queryable()
@@ -24,9 +29,9 @@ namespace CVEditorAPI.Services
             return _set;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll(params object[] keyValues)
         {
-            return this.Queryable();
+            return this._dataContext.Find<IEnumerable<TEntity>>(keyValues);
         }
 
         public TEntity Get(params object[] keyValues)
@@ -41,16 +46,17 @@ namespace CVEditorAPI.Services
             return await _dataContext.SaveChangesAsync();
         }
 
-        public void Update(TEntity entity)
+        public async Task<int> Update(TEntity entity)
         {
             _dataContext.Update<TEntity>(entity);
-            _dataContext.SaveChangesAsync();
+            
+            return await _dataContext.SaveChangesAsync();
         }
 
-        public void Delete(TEntity entity)
+        public async Task<int> Delete(TEntity entity)
         {
             _dataContext.Remove(entity);
-            _dataContext.SaveChangesAsync();
+            return await _dataContext.SaveChangesAsync();
         }
     }
 }

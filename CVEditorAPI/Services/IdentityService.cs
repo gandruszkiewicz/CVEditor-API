@@ -1,6 +1,8 @@
 ﻿using CVEditorAPI.Configurations;
 using CVEditorAPI.Data;
 using CVEditorAPI.Data.Dtos.Responses;
+using CVEditorAPI.Data.Model;
+using CVEditorAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -13,12 +15,12 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Services
 {
-    public class IdentityService: Service<IdentityUser>, IIdentityService
+    public class IdentityService: Service<User>, IIdentityService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly JwtSettings _jwtSettings;
 
-        public IdentityService(UserManager<IdentityUser> userManager, DataContext context, JwtSettings jwtSettings)
+        public IdentityService(UserManager<User> userManager, DataContext context, JwtSettings jwtSettings)
             :base(context)
         {
             this._jwtSettings = jwtSettings;
@@ -63,7 +65,7 @@ namespace CVEditorAPI.Services
                 };
             }
 
-            var newUser = new IdentityUser()
+            var newUser = new User()
             {
                 Email = email,
                 UserName = email
