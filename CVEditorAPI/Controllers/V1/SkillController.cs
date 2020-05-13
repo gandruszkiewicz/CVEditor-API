@@ -43,5 +43,24 @@ namespace CVEditorAPI.Controllers.V1
 
             return this.Ok(result);
         }
+
+        [HttpPut(Concracts.V1.ApiRoutes.Skill.Put)]
+        public async Task<IActionResult> Put([FromBody] PutSkillDto skillDto)
+        {
+            var entity = _mapper.Map<Skill>(skillDto);
+            var result = await _skillService.Update(entity);
+
+            return this.Ok(result);
+        }
+
+        [HttpDelete(Concracts.V1.ApiRoutes.Skill.Delete)]
+        public async Task<IActionResult> Delete(int skillId)
+        {
+            var entity = this._skillService.Get(skillId);
+
+            var result = await _skillService.Delete(entity);
+
+            return this.Ok(result);
+        }
     }
 }

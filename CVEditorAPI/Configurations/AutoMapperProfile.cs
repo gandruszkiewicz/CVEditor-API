@@ -17,9 +17,13 @@ namespace CVEditorAPI.Configurations
         {
             CreateMap<PostExperienceDto, Experience>();
             CreateMap<PutExperienceDto, Experience>();
+
             CreateMap<PostQualificationDto, Qualification>();
             CreateMap<PutQualificationDto, Qualification>();
+
             CreateMap<PostSkillDto, Skill>();
+            CreateMap<PutSkillDto, Skill>();
+
             CreateMap<ResumeDto, Resume>();
             CreateMap<PutResumeDto, Resume>();
         }
