@@ -35,24 +35,18 @@ namespace CVEditorAPI.Controllers.V1
         [HttpGet(Concracts.V1.ApiRoutes.Resumes.GetAll)]
         public IActionResult GetAll()
         {
-            try
-            {
-                var resumes =
-                    this._resume.GetAll().ToList();
+            var resumes =
+                this._resume.GetAll(this.User.GetUserId()).ToList();
 
-                return Ok(resumes);
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
+            return Ok(resumes);
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Resumes.Post)]
         public async Task<IActionResult> Post([FromBody] ResumePostRequest request)
         {
             var entity = _mapper.Map<Resume>(request);
+
+            entity.UserId = this.User.GetUserId();
 
             var result = await _resume.CreateAsync(entity);
 

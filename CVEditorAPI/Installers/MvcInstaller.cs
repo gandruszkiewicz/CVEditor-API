@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace CVEditorAPI.Installers
 {
@@ -36,7 +37,11 @@ namespace CVEditorAPI.Installers
 
             services.AddSingleton(mapper);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(opt => 
+            {
+                opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAuthentication(configureOptions: conf =>
             {

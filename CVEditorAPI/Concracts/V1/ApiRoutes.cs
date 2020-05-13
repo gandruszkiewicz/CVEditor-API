@@ -35,6 +35,13 @@ namespace CVEditorAPI.Concracts.V1
             public const string Post = Base + "/qualification";
         }
 
+        public static class Skill
+        {
+            public const string GetAll = Base + "/skill";
+
+            public const string Post = Base + "/skill";
+        }
+
         public static class Identity
         {
             public const string Login = Base + "/identity/login";

@@ -10,7 +10,7 @@ namespace CVEditorAPI.Services.Interfaces
     {
         IQueryable<TEntity> Queryable();
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(params object[] keyValues);
 
         TEntity Get(params object[] keyValues);
 

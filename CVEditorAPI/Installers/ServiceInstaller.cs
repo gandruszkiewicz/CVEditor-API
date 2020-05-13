@@ -22,6 +22,8 @@ namespace CVEditorAPI.Installers
                     QualificationService>();
 
             services.AddScoped<IIdentityService, IdentityService>();
+
+            services.AddScoped<ISkillService, SkillService>();
         }
     }
 }

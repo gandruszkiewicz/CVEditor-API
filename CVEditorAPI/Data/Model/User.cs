@@ -9,6 +9,6 @@ namespace CVEditorAPI.Data.Model
 {
     public class User: IdentityUser
     {
-        public virtual ICollection<Resume> Resumes { get; set; }
+        public ICollection<Resume> Resumes { get; set; }
     }
 }

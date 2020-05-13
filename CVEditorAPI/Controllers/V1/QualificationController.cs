@@ -23,10 +23,10 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpGet(Concracts.V1.ApiRoutes.Qualification.GetAll)]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int resumeId)
         {
             var personalDatas =
-                this._qualificationService.GetAll();
+                this._qualificationService.GetAll(resumeId);
 
             return Ok(personalDatas);
         }

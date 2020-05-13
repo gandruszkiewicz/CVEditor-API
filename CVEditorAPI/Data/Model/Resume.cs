@@ -1,4 +1,5 @@
 ﻿using CVEditorAPI.Data;
+using CVEditorAPI.Data.Model.ResumeCompoments;
 using CVEditorAPI.Data.Model.ResumeComponents;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,17 @@ namespace CVEditorAPI.Data.Model
 
         public string Address { get; set; }
 
+        public string SumUp { get; set; }
+
         [ForeignKey("User")]
         public string UserId { get; set; }
 
         public User User { get; set; }
 
-        public virtual ICollection<ProfessionalExperience> ProfessionalExperiences { get; set; }
+        public ICollection<ProfessionalExperience> ProfessionalExperiences { get; set; }
 
-        public virtual ICollection<Qualification> Qualifications { get; set; }
+        public ICollection<Qualification> Qualifications { get; set; }
+
+        public ICollection<Skill> Skills { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using AutoMapper;
 using CVEditorAPI.Data.Dtos.Requests;
 using CVEditorAPI.Data.Dtos.Requests.ResumeComponents;
 using CVEditorAPI.Data.Model;
+using CVEditorAPI.Data.Model.ResumeCompoments;
 using CVEditorAPI.Data.Model.ResumeComponents;
 
 namespace CVEditorAPI.Configurations
@@ -16,6 +17,7 @@ namespace CVEditorAPI.Configurations
         {
             CreateMap<ProfessionalExperiencePostRequest, ProfessionalExperience>();
             CreateMap<QualificationPostRequest, Qualification>();
+            CreateMap<SkillPostRequest, Skill>();
             CreateMap<ResumePostRequest,Resume>();
         }
     }

@@ -26,9 +26,9 @@ namespace CVEditorAPI.Services
             return _set;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll(params object[] keyValues)
         {
-            return this.Queryable();
+            return this._dataContext.Find<IEnumerable<TEntity>>(keyValues);
         }
 
         public TEntity Get(params object[] keyValues)

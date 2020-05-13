@@ -4,14 +4,16 @@ using CVEditorAPI.Data.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CVEditorAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200513164944_AddedSkills")]
+    partial class AddedSkills
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,8 +35,6 @@ namespace CVEditorAPI.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("SumUp");
-
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
@@ -52,7 +52,7 @@ namespace CVEditorAPI.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Name");
+                    b.Property<int>("Name");
 
                     b.Property<int>("ResumeId");
 
