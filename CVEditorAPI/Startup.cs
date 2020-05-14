@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CVEditorAPI.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using CVEditorAPI.Installers;
+using Microsoft.Extensions.Hosting;
 
 namespace CVEditorAPI
 {
@@ -34,7 +35,7 @@ namespace CVEditorAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

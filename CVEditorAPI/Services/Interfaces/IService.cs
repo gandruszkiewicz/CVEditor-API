@@ -10,14 +10,14 @@ namespace CVEditorAPI.Services.Interfaces
     {
         IQueryable<TEntity> Queryable();
 
-        IEnumerable<TEntity> GetAll(params object[] keyValues);
+        public IEnumerable<TEntity> GetWhere(Func<TEntity, bool> condition);
 
-        TEntity Get(params object[] keyValues);
+        TEntity GetFirstOrDefault(Func<TEntity, bool> condiction);
 
         Task<int> CreateAsync(TEntity entity);
 
-        Task<int> Update(TEntity entity);
+        Task<int> UpdateAsync(TEntity entity);
 
-        Task<int> Delete(TEntity entity);
+        Task<int> DeleteAsync(TEntity entity);
     }
 }

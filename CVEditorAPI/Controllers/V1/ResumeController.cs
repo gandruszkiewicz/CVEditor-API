@@ -35,7 +35,7 @@ namespace CVEditorAPI.Controllers.V1
         public IActionResult GetAll()
         {
             var resumes =
-                this._resumeService.GetAll(this.User.GetUserId()).ToList();
+                this._resumeService.GetWhere(x => x.UserId == this.User.GetUserId());
 
             return Ok(resumes);
         }
@@ -57,7 +57,7 @@ namespace CVEditorAPI.Controllers.V1
         {
             var entity = _mapper.Map<Resume>(resumeDto);
             entity.UserId = this.User.GetUserId();
-            var result = await _resumeService.Update(entity);
+            var result = await _resumeService.UpdateAsync(entity);
 
             return this.Ok(result);
         }
@@ -65,9 +65,9 @@ namespace CVEditorAPI.Controllers.V1
         [HttpDelete(Concracts.V1.ApiRoutes.Resume.Delete)]
         public async Task<IActionResult> Delete(int resumeId)
         {
-            var entity = this._resumeService.Get(resumeId);
+            var entity = this._resumeService.GetFirstOrDefault(x => x.Id == resumeId);
 
-            var result = await _resumeService.Delete(entity);
+            var result = await _resumeService.DeleteAsync(entity);
 
             return this.Ok(result);
         }

@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace CVEditorAPI.Controllers.V1
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ExperienceController: Controller
     {
         private readonly IExperience _experienceService;
@@ -32,10 +31,10 @@ namespace CVEditorAPI.Controllers.V1
         [HttpGet(Concracts.V1.ApiRoutes.Experience.GetAll)]
         public IActionResult GetAll(int resumeId)
         {
-            var personalDatas =
-                this._experienceService.GetAll(resumeId);
 
-            return Ok(personalDatas);
+            var experiences = this._experienceService.GetWhere(x => x.ResumeId == resumeId);
+
+            return Ok(experiences);
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Experience.Post)]
@@ -54,7 +53,7 @@ namespace CVEditorAPI.Controllers.V1
         {
             var entity = _mapper.Map<Experience>(experienceDto);
 
-             var result = await _experienceService.Update(entity);
+             var result = await _experienceService.UpdateAsync(entity);
 
             return this.Ok(result);
         }
@@ -62,9 +61,11 @@ namespace CVEditorAPI.Controllers.V1
         [HttpDelete(Concracts.V1.ApiRoutes.Experience.Delete)]
         public async Task<IActionResult> Delete(int experienceId)
         {
-            var entity = this._experienceService.Get(experienceId);
+            var entity = this._experienceService.GetFirstOrDefault(x => x.Id == experienceId);
 
-            var result = await _experienceService.Delete(entity);
+            
+
+            var result = await _experienceService.DeleteAsync(entity);
 
             return this.Ok(result);
         }

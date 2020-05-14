@@ -29,15 +29,9 @@ namespace CVEditorAPI.Services
             return _set;
         }
 
-        public IEnumerable<TEntity> GetAll(params object[] keyValues)
-        {
-            return this._dataContext.Find<IEnumerable<TEntity>>(keyValues);
-        }
+        public IEnumerable<TEntity> GetWhere(Func<TEntity, bool> condiction) => _set.Where(condiction);
 
-        public TEntity Get(params object[] keyValues)
-        {
-            return this._dataContext.Find<TEntity>(keyValues);
-        }
+        public TEntity GetFirstOrDefault(Func<TEntity, bool> condiction) => _set.FirstOrDefault(condiction);
 
         public async Task<int> CreateAsync(TEntity entity)
         {
@@ -46,14 +40,14 @@ namespace CVEditorAPI.Services
             return await _dataContext.SaveChangesAsync();
         }
 
-        public async Task<int> Update(TEntity entity)
+        public async Task<int> UpdateAsync(TEntity entity)
         {
             _dataContext.Update<TEntity>(entity);
             
             return await _dataContext.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(TEntity entity)
+        public async Task<int> DeleteAsync(TEntity entity)
         {
             _dataContext.Remove(entity);
             return await _dataContext.SaveChangesAsync();

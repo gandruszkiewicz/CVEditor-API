@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace CVEditorAPI.Controllers.V1
@@ -28,10 +29,10 @@ namespace CVEditorAPI.Controllers.V1
         [HttpGet(Concracts.V1.ApiRoutes.Qualification.GetAll)]
         public IActionResult GetAll(int resumeId)
         {
-            var personalDatas =
-                this._qualificationService.GetAll(resumeId);
+            var qualifications =
+                this._qualificationService.GetWhere(x => x.ResumeId == resumeId);
 
-            return Ok(personalDatas);
+            return Ok(qualifications);
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Qualification.Post)]
@@ -49,7 +50,7 @@ namespace CVEditorAPI.Controllers.V1
         {
             var entity = _mapper.Map<Qualification>(qualificationDto);
 
-            var result = await _qualificationService.Update(entity);
+            var result = await _qualificationService.UpdateAsync(entity);
 
             return this.Ok(result);
         }
@@ -57,9 +58,9 @@ namespace CVEditorAPI.Controllers.V1
         [HttpDelete(Concracts.V1.ApiRoutes.Qualification.Delete)]
         public async Task<IActionResult> Delete(int qualificationId)
         {
-            var entity = this._qualificationService.Get(qualificationId);
+            var entity = this._qualificationService.GetFirstOrDefault(x => x.Id == qualificationId);
 
-            var result = await _qualificationService.Delete(entity);
+            var result = await _qualificationService.DeleteAsync(entity);
 
             return this.Ok(result);
         }
