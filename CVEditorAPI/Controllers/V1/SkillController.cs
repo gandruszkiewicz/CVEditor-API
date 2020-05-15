@@ -28,10 +28,10 @@ namespace CVEditorAPI.Controllers.V1
         [HttpGet(Concracts.V1.ApiRoutes.Skill.GetAll)]
         public IActionResult GetAll(int resumeId)
         {
-            var personalDatas =
-                this._skillService.GetAll(resumeId);
+            var skills =
+                this._skillService.GetWhere(x => x.ResumeId == resumeId);
 
-            return Ok(personalDatas);
+            return Ok(skills);
         }
 
         [HttpPost(Concracts.V1.ApiRoutes.Skill.Post)]
@@ -48,7 +48,7 @@ namespace CVEditorAPI.Controllers.V1
         public async Task<IActionResult> Put([FromBody] PutSkillDto skillDto)
         {
             var entity = _mapper.Map<Skill>(skillDto);
-            var result = await _skillService.Update(entity);
+            var result = await _skillService.UpdateAsync(entity);
 
             return this.Ok(result);
         }
@@ -56,9 +56,9 @@ namespace CVEditorAPI.Controllers.V1
         [HttpDelete(Concracts.V1.ApiRoutes.Skill.Delete)]
         public async Task<IActionResult> Delete(int skillId)
         {
-            var entity = this._skillService.Get(skillId);
+            var entity = this._skillService.GetFirstOrDefault(x => x.Id == skillId);
 
-            var result = await _skillService.Delete(entity);
+            var result = await _skillService.DeleteAsync(entity);
 
             return this.Ok(result);
         }
