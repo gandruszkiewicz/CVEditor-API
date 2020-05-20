@@ -37,6 +37,9 @@ namespace CVEditorAPI.Installers
 
             services.AddSingleton(mapper);
 
+
+            services.AddCors();
+
             services.AddMvc(opt => opt.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 

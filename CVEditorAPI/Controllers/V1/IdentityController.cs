@@ -57,8 +57,19 @@ namespace CVEditorAPI.Controllers.V1
 
             return this.Ok(new IdentitySuccessResponse
             {
-                Token = authResponse.Token
+                Token = authResponse.Token,
+                UserId = authResponse.UserId
             });
+
+        }
+
+        [HttpGet(template: ApiRoutes.Identity.CheckIfUserExist)]
+        public IActionResult CheckIfUserExist(string userId)
+        {
+
+            var authResponse = _identityService.GetFirstOrDefault(x => x.Id == userId);
+            var result = authResponse != null;
+            return this.Ok(result);
 
         }
     }

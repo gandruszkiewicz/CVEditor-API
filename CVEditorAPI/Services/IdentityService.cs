@@ -109,6 +109,7 @@ namespace CVEditorAPI.Services
             return new AuthenticationResult
             {
                 IsSuccess = true,
+                UserId = user.Id,
                 Token = tokenHandler.WriteToken(token)
             };
         }

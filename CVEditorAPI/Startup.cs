@@ -16,6 +16,7 @@ using CVEditorAPI.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
 using CVEditorAPI.Installers;
 using Microsoft.Extensions.Hosting;
+using CVEditorAPI.Data.Model;
 
 namespace CVEditorAPI
 {
@@ -46,6 +47,12 @@ namespace CVEditorAPI
                 app.UseHsts();
             }
 
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
+                context.Database.EnsureCreated();
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             
@@ -57,6 +64,10 @@ namespace CVEditorAPI
             app.UseSwagger(options => options.RouteTemplate = swaggerOptions.JsonRoute);
             app.UseSwaggerUI(options => 
                 options.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description));
+
+            app.UseCors(
+                options => options.SetIsOriginAllowed(x => _ = true).WithOrigins("http://localhost:3000/").AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+            );
 
             app.UseMvc();
         }

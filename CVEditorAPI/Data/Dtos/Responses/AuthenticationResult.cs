@@ -7,6 +7,7 @@ namespace CVEditorAPI.Data.Dtos.Responses
 {
     public class AuthenticationResult
     {
+        public string UserId { get; set; }
         public string Token { get; set; }
 
         public bool IsSuccess { get; set; }
