@@ -57,6 +57,7 @@ namespace CVEditorAPI.Controllers.V1
 
             return this.Ok(new IdentitySuccessResponse
             {
+                UserName = authResponse.UserName,
                 Token = authResponse.Token,
                 UserId = authResponse.UserId
             });
