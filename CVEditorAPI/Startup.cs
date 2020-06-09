@@ -45,11 +45,11 @@ namespace CVEditorAPI
 
             app.UseDeveloperExceptionPage();
 
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
-                context.Database.EnsureCreated();
-            }
+            //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetRequiredService<DataContext>();
+            //    context.Database.EnsureCreated();
+            //}
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

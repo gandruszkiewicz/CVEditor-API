@@ -20,7 +20,7 @@ namespace CVEditorAPI.Installers
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"));
                
-            },ServiceLifetime.Singleton);
+            },ServiceLifetime.Transient);
             services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<DataContext>();
 

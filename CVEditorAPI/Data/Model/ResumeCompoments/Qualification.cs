@@ -1,6 +1,8 @@
 ﻿using CVEditorAPI.Data.Model.ResumeComponents;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +10,8 @@ namespace CVEditorAPI.Data.Model.ResumeComponents
 {
     public class Qualification: BaseResumeComponent
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string SchoolName { get; set; }

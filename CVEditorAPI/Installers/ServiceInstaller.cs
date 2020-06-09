@@ -13,12 +13,12 @@ namespace CVEditorAPI.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IResumeService, ResumeService>();
+            services.AddTransient<IResumeService, ResumeService>();
 
-            services.AddSingleton<IExperience, 
+            services.AddTransient<IExperience, 
                 ExperienceService>();
 
-            services.AddSingleton<IQualificationService,
+            services.AddTransient<IQualificationService,
                     QualificationService>();
 
             services.AddScoped<IIdentityService, IdentityService>();

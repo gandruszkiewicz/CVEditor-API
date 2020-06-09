@@ -40,12 +40,11 @@ namespace CVEditorAPI.Controllers.V1
         [HttpPost(Concracts.V1.ApiRoutes.Experience.Post)]
         public async Task<IActionResult> Post([FromBody] PostExperienceDto request)
         {
-            var userId = HttpContext.User.GetUserId();
             var entity = _mapper.Map<Experience>(request);
 
             var result = await _experienceService.CreateAsync(entity);
 
-            return this.Ok(result);
+            return this.Ok(entity.Id);
         }
 
         [HttpPut(Concracts.V1.ApiRoutes.Experience.Put)]

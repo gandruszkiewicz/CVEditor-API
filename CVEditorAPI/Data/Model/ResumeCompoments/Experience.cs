@@ -11,6 +11,7 @@ namespace CVEditorAPI.Data.Model.ResumeComponents
     public class Experience: BaseResumeComponent
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string CompanyName { get; set; }

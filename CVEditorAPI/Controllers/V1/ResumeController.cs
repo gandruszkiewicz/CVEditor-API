@@ -45,11 +45,9 @@ namespace CVEditorAPI.Controllers.V1
         {
             var entity = _mapper.Map<Resume>(resumeDto);
 
-            entity.UserId = this.User.GetUserId();
-
             var result = await _resumeService.CreateAsync(entity);
 
-            return this.Ok(result);
+            return this.Ok(entity.Id);
         }
 
         [HttpPut(Concracts.V1.ApiRoutes.Resume.Put)]
