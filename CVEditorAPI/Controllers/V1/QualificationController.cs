@@ -42,7 +42,7 @@ namespace CVEditorAPI.Controllers.V1
 
             var result = await _qualificationService.CreateAsync(entity);
 
-            return this.Ok(result);
+            return this.Ok(entity.Id);
         }
 
         [HttpPut(Concracts.V1.ApiRoutes.Qualification.Put)]
@@ -52,7 +52,7 @@ namespace CVEditorAPI.Controllers.V1
 
             var result = await _qualificationService.UpdateAsync(entity);
 
-            return this.Ok(result);
+            return this.Ok(entity.Id);
         }
 
         [HttpDelete(Concracts.V1.ApiRoutes.Qualification.Delete)]

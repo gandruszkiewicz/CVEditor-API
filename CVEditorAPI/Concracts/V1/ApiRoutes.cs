@@ -29,6 +29,8 @@ namespace CVEditorAPI.Concracts.V1
 
             public const string Delete = BaseEndpoint;
 
+            public const string GetQuantityByUser = BaseEndpoint + "/getQuantityByUser/{userId}";
+
             private const string BaseEndpoint = Base + "/resume";
         }
 

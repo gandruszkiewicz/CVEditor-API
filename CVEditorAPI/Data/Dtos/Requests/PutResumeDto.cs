@@ -8,6 +8,9 @@ namespace CVEditorAPI.Data.Dtos.Requests.ResumeComponents
     public class PutResumeDto
     {
         public int Id { get; set; }
+
+        public string DocumentName { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

@@ -32,10 +32,10 @@ namespace CVEditorAPI.Controllers.V1
         }
 
         [HttpGet(Concracts.V1.ApiRoutes.Resume.GetAll)]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string userId)
         {
             var resumes =
-                this._resumeService.GetWhere(x => x.UserId == this.User.GetUserId());
+                this._resumeService.GetWhere(x => x.UserId == userId);
 
             return Ok(resumes);
         }
@@ -69,5 +69,15 @@ namespace CVEditorAPI.Controllers.V1
 
             return this.Ok(result);
         }
+
+        [HttpGet(Concracts.V1.ApiRoutes.Resume.GetQuantityByUser)]
+        public IActionResult GetQuantityByUser(string userId)
+        {
+            var resumeQuantity = this._resumeService
+                .GetWhere(x => x.UserId == userId).Count();
+
+            return this.Ok(resumeQuantity);
+        }
+
     }
 }

@@ -41,7 +41,7 @@ namespace CVEditorAPI.Controllers.V1
 
             var result = await _skillService.CreateAsync(entity);
 
-            return this.Ok(result);
+            return this.Ok(entity.Id);
         }
 
         [HttpPut(Concracts.V1.ApiRoutes.Skill.Put)]
